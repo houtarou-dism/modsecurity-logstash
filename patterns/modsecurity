@@ -1,0 +1,29 @@
+LOG_DATE %{MONTHDAY}/%{MONTH}/%{YEAR}:%{TIME}\s%{INT}
+HTTP_VERSION HTTP/%{BASE10NUM}
+HTTP_METHOD GET|HEAD|POST|PUT|DELETE|CONNECT|OPTIONS|TRACE|PATCH
+
+BLOCK_A --.*---A--\n\[%{LOG_DATE:log_date}\] %{DATA:unique_transaction_id} %{IP:[source][ip]} %{INT:[source][port]} %{IP:[destination][ip]} %{INT:[destination][port]}
+BLOCK_B %{HTTP_METHOD:[request][header][http_method]} %{DATA:[request][url]} %{HTTP_VERSION:[request][header][http_version]}\n
+
+MODSECURITY_TEMP ModSecurity: %{DATA}\. %{DATA} \[file "%{DATA}"\] %{DATA} \[id "%{INT}"\] %{DATA} \[msg "%{DATA}"\] \[data "%{DATA}"\] %{DATA} \[unique_id "%{DATA}"\]
+
+MODSECURITY_1 ModSecurity: %{DATA:[audit_log][1][action]}\. %{DATA:[audit_log][1][message1]} \[file "%{DATA:[audit_log][1][file]}"\] %{DATA} \[id "%{INT:[audit_log][1][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][1][message2]}"\] \[data "%{DATA:[audit_log][1][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][1][unique_id]}"\]
+MODSECURITY_2 ModSecurity: %{DATA:[audit_log][2][action]}\. %{DATA:[audit_log][2][message1]} \[file "%{DATA:[audit_log][2][file]}"\] %{DATA} \[id "%{INT:[audit_log][2][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][2][message2]}"\] \[data "%{DATA:[audit_log][2][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][2][unique_id]}"\]
+MODSECURITY_3 ModSecurity: %{DATA:[audit_log][3][action]}\. %{DATA:[audit_log][3][message1]} \[file "%{DATA:[audit_log][3][file]}"\] %{DATA} \[id "%{INT:[audit_log][3][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][3][message2]}"\] \[data "%{DATA:[audit_log][3][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][3][unique_id]}"\]
+MODSECURITY_4 ModSecurity: %{DATA:[audit_log][4][action]}\. %{DATA:[audit_log][4][message1]} \[file "%{DATA:[audit_log][4][file]}"\] %{DATA} \[id "%{INT:[audit_log][4][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][4][message2]}"\] \[data "%{DATA:[audit_log][4][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][4][unique_id]}"\]
+MODSECURITY_5 ModSecurity: %{DATA:[audit_log][5][action]}\. %{DATA:[audit_log][5][message1]} \[file "%{DATA:[audit_log][5][file]}"\] %{DATA} \[id "%{INT:[audit_log][5][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][5][message2]}"\] \[data "%{DATA:[audit_log][5][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][5][unique_id]}"\]
+MODSECURITY_6 ModSecurity: %{DATA:[audit_log][6][action]}\. %{DATA:[audit_log][6][message1]} \[file "%{DATA:[audit_log][6][file]}"\] %{DATA} \[id "%{INT:[audit_log][6][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][6][message2]}"\] \[data "%{DATA:[audit_log][6][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][6][unique_id]}"\]
+MODSECURITY_7 ModSecurity: %{DATA:[audit_log][7][action]}\. %{DATA:[audit_log][7][message1]} \[file "%{DATA:[audit_log][7][file]}"\] %{DATA} \[id "%{INT:[audit_log][7][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][7][message2]}"\] \[data "%{DATA:[audit_log][7][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][7][unique_id]}"\]
+MODSECURITY_8 ModSecurity: %{DATA:[audit_log][8][action]}\. %{DATA:[audit_log][8][message1]} \[file "%{DATA:[audit_log][8][file]}"\] %{DATA} \[id "%{INT:[audit_log][8][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][8][message2]}"\] \[data "%{DATA:[audit_log][8][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][8][unique_id]}"\]
+MODSECURITY_9 ModSecurity: %{DATA:[audit_log][9][action]}\. %{DATA:[audit_log][9][message1]} \[file "%{DATA:[audit_log][9][file]}"\] %{DATA} \[id "%{INT:[audit_log][9][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][9][message2]}"\] \[data "%{DATA:[audit_log][9][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][9][unique_id]}"\]
+MODSECURITY_10 ModSecurity: %{DATA:[audit_log][10][action]}\. %{DATA:[audit_log][10][message1]} \[file "%{DATA:[audit_log][10][file]}"\] %{DATA} \[id "%{INT:[audit_log][10][id]}"\] %{DATA} \[msg "%{DATA:[audit_log][10][message2]}"\] \[data "%{DATA:[audit_log][10][data]}"\] %{DATA} \[unique_id "%{DATA:[audit_log][10][unique_id]}"\]
+
+MODSECURITY_PATTERN_1 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_2}
+MODSECURITY_PATTERN_2 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_3}
+MODSECURITY_PATTERN_3 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_4}
+MODSECURITY_PATTERN_4 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_5}
+MODSECURITY_PATTERN_5 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_6}
+MODSECURITY_PATTERN_6 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_7}
+MODSECURITY_PATTERN_7 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_8}
+MODSECURITY_PATTERN_8 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_9}
+MODSECURITY_PATTERN_9 ^%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_TEMP}.*?%{MODSECURITY_10}

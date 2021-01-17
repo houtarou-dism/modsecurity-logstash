@@ -1,5 +1,7 @@
 # modsecurity-logstash
 
+![License](https://img.shields.io/github/license/houtarou-dism/modsecurity-logstash)
+
 Logstash grok filters for parsing modsecurity audit logs.
 
 ## Fields
